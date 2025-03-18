@@ -113,7 +113,10 @@ class _TodoAppState extends State<TodoApp> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text('Select a date'),
+                      Text(selectedDate != null
+                            ? DateFormat(
+                              "dd-MM-yyyy HH:mm",
+                            ).format(selectedDate!): 'Select a date'),
                     ],
                   ),
                   IconButton(

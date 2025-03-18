@@ -62,34 +62,34 @@ class _TodoAppState extends State<TodoApp> {
 
   List<Map<String, dynamic>> task = [];
 
-  Widget _buildTaskCard(Map<String, dynamic> task, int index) {
+  Widget _buildTaskCard(Map<String, dynamic> tasks, int index) {
     return Card(
-      color: const Color.fromARGB(255, 201, 201, 201),
+      color: const Color.fromARGB(255, 224, 222, 222),
       child: ListTile(
         title: Text(
-          task["title"],
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          tasks["title"],
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Deadline: ${task['deadline']}",
-              style: const TextStyle(color: Color.fromARGB(255, 47, 55, 59)),
+              "Deadline: ${tasks['deadline']}",
+              style: const TextStyle(color: Color.fromARGB(255, 4, 5, 5)),
             ),
             Text(
-              task["done"] ? "Done" : "Not Done",
-              style: TextStyle(
+              tasks["done"] ? "Done" : "Not Done",
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600,
                 color:
-                    task["done"]
-                        ? const Color.fromARGB(255, 21, 185, 27)
+                    tasks["done"]
+                        ? const Color.fromARGB(255, 28, 145, 31)
                         : Colors.red,
               ),
             ),
           ],
         ),
         trailing: Checkbox(
-          value: task["done"],
+          value: tasks["done"],
           onChanged: (bool? value) {
             setState(() {
               task[index]["done"] = value!;
@@ -148,6 +148,7 @@ class _TodoAppState extends State<TodoApp> {
                     child: Form(
                       key: _key,
                       child: TextFormField(
+                        controller: _todoappController,
                         decoration: InputDecoration(
                           label: Text('task name'),
                           hintText: 'Enter task',
@@ -183,8 +184,9 @@ class _TodoAppState extends State<TodoApp> {
               const Divider(thickness: 2),
               const Text(
                 'To do List',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
+              const SizedBox(height: 10),
               Expanded(
                 child: ListView.builder(
                   itemCount: task.length,

@@ -71,6 +71,10 @@ class _TodoAppState extends State<TodoApp> {
                   ))
                 ]
               ),
+              const SizedBox(height: 20),
+              const Divider(thickness: 2),
+              const Text('To do List', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+              
             ],
           ),
         ),

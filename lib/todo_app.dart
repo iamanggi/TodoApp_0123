@@ -38,6 +38,28 @@ void _selectDate() {
     ).show(context);
   }
 
+  void _submitTasks() {
+    if (_key.currentState!.validate() && selectedDate != null) {
+      setState(() {
+        task.add({
+          "title": _todoappController.text,
+          "deadline": DateFormat("dd-MM-yyyy HH:mm").format(selectedDate!),
+          "done": false,
+        });
+        _todoappController.clear();
+        selectedDate = null;
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Task has been successfully added!"),
+          backgroundColor: Colors.green,
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

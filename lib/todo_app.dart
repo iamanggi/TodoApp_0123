@@ -18,6 +18,7 @@ class _TodoAppState extends State<TodoApp> {
           child: Column(
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,6 +32,13 @@ class _TodoAppState extends State<TodoApp> {
                       ),
                       Text('Select a date'),
                     ],
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.date_range_rounded,
+                      color: const Color.fromARGB(255, 33, 99, 153),
+                    ),
                   ),
                 ],
               ),

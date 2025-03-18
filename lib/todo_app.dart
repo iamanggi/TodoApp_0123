@@ -133,6 +133,7 @@ class _TodoAppState extends State<TodoApp> {
                 children: [
                   Expanded(
                     child: Form(
+                      key: _key,
                       child: TextFormField(
                         decoration: InputDecoration(
                           label: Text('task name'),

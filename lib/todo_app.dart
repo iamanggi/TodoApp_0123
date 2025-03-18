@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:bottom_picker/bottom_picker.dart';
+import 'package:intl/intl.dart';
 
 class TodoApp extends StatefulWidget {
   const TodoApp({super.key});
@@ -12,7 +14,29 @@ class _TodoAppState extends State<TodoApp> {
 
   final _key = GlobalKey<FormState>();
   final TextEditingController _todoappController = TextEditingController();
+  DateTime? selectedDate;
 
+void _selectDate() {
+    BottomPicker.date(
+      pickerTitle: Text(
+        'Set date',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 15,
+          color: Colors.blue,
+        ),
+      ),
+      onSubmit: (date) {
+        setState(() {
+          selectedDate = date;
+        });
+      },
+      initialDateTime: DateTime.now(),
+      maxDateTime: DateTime(2100),
+      minDateTime: DateTime(2000),
+      pickerTextStyle: const TextStyle(fontSize: 16, color: Colors.black),
+    ).show(context);
+  }
 
   @override
   Widget build(BuildContext context) {

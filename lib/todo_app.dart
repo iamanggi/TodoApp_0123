@@ -42,6 +42,19 @@ class _TodoAppState extends State<TodoApp> {
                   ),
                 ],
               ),
+              const SizedBox(height: 20),
+              Form(child: Column(
+                children: [
+                  TextFormField(
+                    decoration: InputDecoration(
+                      label: Text('task name'),
+                      hintText: 'Enter task',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ))
+                ]
+              ))
             ],
           ),
         ),

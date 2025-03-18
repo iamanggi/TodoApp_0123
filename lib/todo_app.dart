@@ -60,7 +60,7 @@ class _TodoAppState extends State<TodoApp> {
     }
   }
 
-  List<Map<String, dynamic>> tasks = [];
+  List<Map<String, dynamic>> task = [];
 
   Widget _buildTaskCard(Map<String, dynamic> task, int index) {
     return Card(
@@ -92,7 +92,7 @@ class _TodoAppState extends State<TodoApp> {
           value: task["done"],
           onChanged: (bool? value) {
             setState(() {
-              tasks[index]["done"] = value!;
+              task[index]["done"] = value!;
             });
           },
           activeColor: Colors.purple,
@@ -133,7 +133,7 @@ class _TodoAppState extends State<TodoApp> {
                     ],
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: _selectDate,
                     icon: Icon(
                       Icons.date_range_rounded,
                       color: const Color.fromARGB(255, 33, 99, 153),
@@ -167,7 +167,7 @@ class _TodoAppState extends State<TodoApp> {
                   Padding(padding: const EdgeInsets.only(left: 8.0)),
                   SizedBox(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: _submitTasks,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromARGB(255, 54, 25, 185),
                       ),
@@ -185,6 +185,10 @@ class _TodoAppState extends State<TodoApp> {
                 'To do List',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: task.length,
+                  itemBuilder: (context, index) => _buildTaskCard(task[index], index),))
             ],
           ),
         ),

@@ -66,14 +66,25 @@ class _TodoAppState extends State<TodoApp> {
     return Card(
       color: const Color.fromARGB(255, 201, 201, 201),
       child: ListTile(
-        title: Text(task["title"], style: const TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(
+          task["title"],
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Deadline: ${task['deadline']}", style: const TextStyle(color: Color.fromARGB(255, 47, 55, 59))),
+            Text(
+              "Deadline: ${task['deadline']}",
+              style: const TextStyle(color: Color.fromARGB(255, 47, 55, 59)),
+            ),
             Text(
               task["done"] ? "Done" : "Not Done",
-              style: TextStyle(color: task["done"] ? const Color.fromARGB(255, 21, 185, 27) : Colors.red),
+              style: TextStyle(
+                color:
+                    task["done"]
+                        ? const Color.fromARGB(255, 21, 185, 27)
+                        : Colors.red,
+              ),
             ),
           ],
         ),
@@ -89,7 +100,6 @@ class _TodoAppState extends State<TodoApp> {
       ),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -113,10 +123,13 @@ class _TodoAppState extends State<TodoApp> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text(selectedDate != null
+                      Text(
+                        selectedDate != null
                             ? DateFormat(
                               "dd-MM-yyyy HH:mm",
-                            ).format(selectedDate!): 'Select a date'),
+                            ).format(selectedDate!)
+                            : 'Select a date',
+                      ),
                     ],
                   ),
                   IconButton(
@@ -142,6 +155,12 @@ class _TodoAppState extends State<TodoApp> {
                             borderRadius: BorderRadius.circular(15),
                           ),
                         ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Task cannot be empty";
+                          }
+                          return null;
+                        },
                       ),
                     ),
                   ),

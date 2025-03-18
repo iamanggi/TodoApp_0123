@@ -62,6 +62,35 @@ class _TodoAppState extends State<TodoApp> {
 
   List<Map<String, dynamic>> tasks = [];
 
+  Widget _buildTaskCard(Map<String, dynamic> task, int index) {
+    return Card(
+      color: const Color.fromARGB(255, 201, 201, 201),
+      child: ListTile(
+        title: Text(task["title"], style: const TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Deadline: ${task['deadline']}", style: const TextStyle(color: Color.fromARGB(255, 47, 55, 59))),
+            Text(
+              task["done"] ? "Done" : "Not Done",
+              style: TextStyle(color: task["done"] ? const Color.fromARGB(255, 21, 185, 27) : Colors.red),
+            ),
+          ],
+        ),
+        trailing: Checkbox(
+          value: task["done"],
+          onChanged: (bool? value) {
+            setState(() {
+              tasks[index]["done"] = value!;
+            });
+          },
+          activeColor: Colors.purple,
+        ),
+      ),
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

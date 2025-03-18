@@ -16,7 +16,7 @@ class _TodoAppState extends State<TodoApp> {
   final TextEditingController _todoappController = TextEditingController();
   DateTime? selectedDate;
 
-void _selectDate() {
+  void _selectDate() {
     BottomPicker.date(
       pickerTitle: Text(
         'Set date',
@@ -59,6 +59,8 @@ void _selectDate() {
       );
     }
   }
+
+  List<Map<String, dynamic>> tasks = [];
 
   @override
   Widget build(BuildContext context) {
@@ -110,23 +112,27 @@ void _selectDate() {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                     
-                  ),
+                  Padding(padding: const EdgeInsets.only(left: 8.0)),
                   SizedBox(
-                    child: ElevatedButton(onPressed: (){}, style: 
-                    ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 54, 25, 185)
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 54, 25, 185),
+                      ),
+                      child: const Text(
+                        "submit",
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
                     ),
-                    child: const Text("submit",style: TextStyle(color: Colors.white, fontSize: 16),),
-                  ))
-                ]
+                  ),
+                ],
               ),
               const SizedBox(height: 20),
               const Divider(thickness: 2),
-              const Text('To do List', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
-              
+              const Text(
+                'To do List',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
             ],
           ),
         ),

@@ -17,11 +17,11 @@ class _TodoAppState extends State<TodoApp> {
   void _selectDate() {
     BottomPicker.date(
       pickerTitle: Text(
-        'Set date',
+        'Set task date & time',
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 15,
-          color: Colors.blue,
+          color: Colors.blue[900],
         ),
       ),
       onSubmit: (date) {

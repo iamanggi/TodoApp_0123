@@ -10,8 +10,6 @@ class TodoApp extends StatefulWidget {
 }
 
 class _TodoAppState extends State<TodoApp> {
-  bool isChecked = false;
-
   final _key = GlobalKey<FormState>();
   final TextEditingController _todoappController = TextEditingController();
   DateTime? selectedDate;
@@ -79,7 +77,9 @@ class _TodoAppState extends State<TodoApp> {
             ),
             Text(
               tasks["done"] ? "Done" : "Not Done",
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
                 color:
                     tasks["done"]
                         ? const Color.fromARGB(255, 28, 145, 31)
@@ -95,7 +95,7 @@ class _TodoAppState extends State<TodoApp> {
               task[index]["done"] = value!;
             });
           },
-          activeColor: Colors.purple,
+          activeColor: const Color.fromARGB(255, 80, 39, 176),
         ),
       ),
     );
@@ -104,11 +104,19 @@ class _TodoAppState extends State<TodoApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Center(child: const Text('Todo App'))),
+      appBar: AppBar(
+        title: Center(
+          child: const Text(
+            'Todo App',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -119,7 +127,7 @@ class _TodoAppState extends State<TodoApp> {
                       const Text(
                         'Task Date:',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -129,6 +137,7 @@ class _TodoAppState extends State<TodoApp> {
                               "dd-MM-yyyy HH:mm",
                             ).format(selectedDate!)
                             : 'Select a date',
+                        style: TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
@@ -141,6 +150,14 @@ class _TodoAppState extends State<TodoApp> {
                   ),
                 ],
               ),
+              if (selectedDate == null)
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5),
+                  child: Text(
+                    "Please select a date",
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
               const SizedBox(height: 20),
               Row(
                 children: [
@@ -190,7 +207,10 @@ class _TodoAppState extends State<TodoApp> {
               Expanded(
                 child: ListView.builder(
                   itemCount: task.length,
-                  itemBuilder: (context, index) => _buildTaskCard(task[index], index),))
+                  itemBuilder:
+                      (context, index) => _buildTaskCard(task[index], index),
+                ),
+              ),
             ],
           ),
         ),
